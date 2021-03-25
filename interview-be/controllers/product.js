@@ -14,7 +14,9 @@ async function getProducts(req, res) {
     };
 
     try {
-        let product = await Product.find();
+        let product = await Product.find().select("-id").sort({
+            productDate: 1,
+          });;
         console.log("product",product)
         respObj.IsSuccess = true;
         respObj.Data = product;
